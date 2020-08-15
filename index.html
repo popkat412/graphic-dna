@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Graphic DNA</title>
+    <link rel="stylesheet" href="skeleton.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.0.0-rc.8/mermaid.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+    <script src="https://unpkg.com/vue-p5"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <form>
+        <label for="seq">DNA Sequence</label>
+        <textarea
+          v-model="seq"
+          v-on:keyup="validateSeq"
+          name="seq"
+          id="seq"
+          class="u-full-width"
+          style="height: 400px;"
+        ></textarea>
+        <label><input type="checkbox" v-model="showLabels" name="show-labels" id="show-labels"><span class="label-body">Show Labels</span></label>
+        <br />
+        <details>
+          <summary>Image Size</summary>
+          <label for="width"><span class="label-body">Image width (px)<span></label>
+          <input
+            type="number"
+            name="width"
+            id="width"
+            min="10"
+            v-model="width"
+          />
+          <label for="height"><span class="label-body">Image height (px)</span></label>
+          <input
+            type="number"
+            name="height"
+            id="height"
+            min="10"
+            v-model="height"
+          />
+        </details>
+        <details>
+          <summary>Colours</summary>
+          <label for="chart-colour">
+            <span class="label-body">Chart Colour</span>
+          </label>
+          <input
+            type="color"
+            name="chart-colour"
+            id="chart-colour"
+            value="#33C3F0"
+            v-model="chartColour"
+          />
+          <label for="label-colour">
+            <span class="label-body">Label Colour</span>
+          </label>
+          <input
+            type="color"
+            name="label-colour"
+            id="label-colour"
+            value="#000000"
+            v-model="labelColour"
+          />
+        </details><br />
+        <div v-if="errorMsg !== ''">
+          <span style="color: red;"> Error: {{ errorMsg }}</span><br />
+        </div>
+        <div v-if="warningMsg !== ''">
+          <span style="color: orange;">Warning: {{ warningMsg }}</span><br />
+        </div>
+        <button
+          type="submit"
+          class="button-primary"
+          v-on:click.prevent="generateGraph"
+        >
+          Generate Graph
+        </button>
+      </form>
+      <!-- <div v-if="isLoading" class="u-full-width" style="text-align: center;">
+        <img
+          src="images/dna_loading.gif"
+          alt="Loading indicator"
+          width="90px"
+          height="100px"
+          id="loading-indicator"
+        />
+      </div> -->
+      <div v-if="sketch">
+        <div id="graph" class="u-full-width">
+          <vue-p5 @sketch="sketch" :key="sketchKey"></vue-p5>
+        </div>
+        <div style="width: 50%; margin: 0 auto;">
+          <button v-on:click="saveAsImg('jpg')">Download JPG</button>
+          <button v-on:click="saveAsImg('png')">Download PNG</button>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

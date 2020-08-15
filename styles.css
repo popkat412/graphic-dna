@@ -1,0 +1,19 @@
+form {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+#graph {
+  text-align: center;
+  padding: 20px;
+}
+
+.download-link {
+  color: inherit;
+  text-decoration-line: inherit;
+}
+
+summary {
+  font-weight: bold;
+}
