@@ -6,9 +6,7 @@
     <title>Graphic DNA</title>
     <link rel="stylesheet" href="skeleton.css" />
     <link rel="stylesheet" href="styles.css" />
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.0.0-rc.8/mermaid.min.js"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
     <script src="https://unpkg.com/vue-p5"></script>
   </head>
@@ -83,15 +81,6 @@
           Generate Graph
         </button>
       </form>
-      <!-- <div v-if="isLoading" class="u-full-width" style="text-align: center;">
-        <img
-          src="images/dna_loading.gif"
-          alt="Loading indicator"
-          width="90px"
-          height="100px"
-          id="loading-indicator"
-        />
-      </div> -->
       <div v-if="sketch">
         <div id="graph" class="u-full-width">
           <vue-p5 @sketch="sketch" :key="sketchKey"></vue-p5>
